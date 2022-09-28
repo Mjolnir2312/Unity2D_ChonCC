@@ -15,6 +15,9 @@ public class Health : MonoBehaviour
     [SerializeField] private int iFramesCoolDown;
     private SpriteRenderer spriteRed;
 
+    [Header("Component")]
+    [SerializeField] private Behaviour[] components;
+
     [Header("Death and Hurt Sound")]
     [SerializeField] private AudioClip DeathSound;
     [SerializeField] private AudioClip HurtSound;
@@ -43,16 +46,8 @@ public class Health : MonoBehaviour
             {
                 anim.SetTrigger("Die");
 
-                //Player
-                if(GetComponent<PlayerController>() != null)
-                    GetComponent<PlayerController>().enabled = false;
-
-                //Enemy
-                if (GetComponent<EnemyPatrol>() != null)
-                    GetComponent<EnemyPatrol>().enabled = false;
-
-                if (GetComponent<Enemy>() != null)
-                    GetComponent<Enemy>().enabled = false;
+                foreach (Behaviour component in components)
+                    component.enabled = false;
 
                 dead = true;
                 SoundManager.instance.PlaySound(DeathSound);
@@ -69,6 +64,19 @@ public class Health : MonoBehaviour
     public void AddHealth(float _value)
     {
         currentHealth = Mathf.Clamp(currentHealth + _value, 0, startingHealth);
+    }
+
+    public void Respawn()
+    {
+        dead = false;
+
+        AddHealth(startingHealth);
+        anim.ResetTrigger("PlayerDie");
+        anim.Play("PlayerIdle");
+        StartCoroutine(Invulnerability());
+
+        foreach (Behaviour component in components)
+            component.enabled = true;
     }
 
     private IEnumerator Invulnerability()

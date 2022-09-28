@@ -198,6 +198,8 @@ MonoBehaviour:
   startingHealth: 10
   iFramesDuration: 0
   iFramesCoolDown: 0
+  components:
+  - {fileID: 3452705668431652204}
   DeathSound: {fileID: 8300000, guid: 0df70d19e335eee47a96f1bb5a9bc2b7, type: 3}
   HurtSound: {fileID: 8300000, guid: 1c37dcc071455e941bc15fc2e0d34073, type: 3}
 --- !u!114 &3452705668431652206

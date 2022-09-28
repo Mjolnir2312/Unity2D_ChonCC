@@ -5,16 +5,16 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Player Speed")]
-    [SerializeField] private float speed;
+    [SerializeField] private float Speed;
     [Header("Layer")]
-    [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private LayerMask wallLayer;
+    [SerializeField] private LayerMask GroundLayer;
+    [SerializeField] private LayerMask WallLayer;
     private Rigidbody2D body;
     private Animator anim;
     private BoxCollider2D boxCollider;
     private float wallJumpCooldown;
     private float horizontalInput;
-    [Header("Coins")]
+    [Header("Sound")]
     [SerializeField] private AudioClip CoinSound;
 
     private void Awake()
@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKey(KeyCode.Space) && isGround())
                 Jump();
 
-            body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
+            body.velocity = new Vector2(horizontalInput * Speed, body.velocity.y);
 
             if (onWall() && !isGround())
             {
@@ -56,11 +56,12 @@ public class PlayerController : MonoBehaviour
         }
         else
             wallJumpCooldown += Time.deltaTime;
+        
     }
 
     private void Jump()
     {
-        body.velocity = new Vector2(body.velocity.x, speed);
+        body.velocity = new Vector2(body.velocity.x, Speed);
         anim.SetTrigger("Jump");
     }
 
@@ -74,13 +75,13 @@ public class PlayerController : MonoBehaviour
 
     private bool isGround()
     {
-        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, groundLayer);
+        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, GroundLayer);
         return raycastHit.collider != null;
     }
 
     private bool onWall()
     {
-        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, new Vector2(transform.localScale.x, 0 ), 0.1f, wallLayer);
+        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, new Vector2(transform.localScale.x, 0 ), 0.1f, WallLayer);
         return raycastHit.collider != null;
     }
 

@@ -4,34 +4,24 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    public Transform target;
-    public float smoothing;
+    [SerializeField] private float Speed;
+    private float currentPosX;
+    private Vector3 velocity = Vector3.zero;
 
-    Vector3 offset;
+    [SerializeField] private Transform Player;
+    [SerializeField] private float AheadDistance;
+    [SerializeField] private float CameraSpeed;
+    private float lookaHead;
 
-    float lowY;
-    // Start is called before the first frame update
-    void Start()
+
+    private void Update()
     {
-        offset = transform.position - target.position;
+        //transform.position = Vector3.SmoothDamp(transform.position, new Vector3(currentPosX,transform.position.y, transform.position.z),
+        //    ref velocity, Speed * Time.deltaTime);
 
-        lowY = transform.position.y;
+        transform.position = new Vector3(Player.position.x, transform.position.y, transform.position.z);
+        lookaHead = Mathf.Lerp(lookaHead, (AheadDistance * Player.localScale.x), Time.deltaTime * CameraSpeed);
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        Vector3 targetCamPos = target.position + offset;
 
-        transform.position = Vector3.Lerp(transform.position, targetCamPos, smoothing * Time.deltaTime);
-
-        if(transform.position.y < lowY)
-        {
-            transform.position = new Vector3(transform.position.x, lowY, transform.position.z);
-        }
-        if(transform.position.y > lowY)
-        {
-            transform.position = new Vector3(transform.position.x, lowY, transform.position.z);
-        }
-    }
 }
