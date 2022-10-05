@@ -571,6 +571,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1216274435}
     m_Modifications:
+    - target: {fileID: 3575997997407422708, guid: e776a4b33ef84a8459695fc8eeb5a857, type: 3}
+      propertyPath: iLevelToLoad
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3575997997407422709, guid: e776a4b33ef84a8459695fc8eeb5a857, type: 3}
       propertyPath: m_Size.y
       value: 2.71

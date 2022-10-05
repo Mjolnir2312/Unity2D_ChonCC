@@ -6706,6 +6706,10 @@ PrefabInstance:
       propertyPath: playerHealth
       value: 
       objectReference: {fileID: 1174676996}
+    - target: {fileID: 1246076775745431712, guid: e1aa4451b159b2b4ebc81e2dbfe27043, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1246076775859764289, guid: e1aa4451b159b2b4ebc81e2dbfe27043, type: 3}
       propertyPath: m_Name
       value: UICanvas
@@ -6792,6 +6796,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1246076775859764293, guid: e1aa4451b159b2b4ebc81e2dbfe27043, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3208833219441565026, guid: e1aa4451b159b2b4ebc81e2dbfe27043, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -6937,6 +6945,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1250304101}
     m_Modifications:
+    - target: {fileID: 3575997997407422708, guid: e776a4b33ef84a8459695fc8eeb5a857, type: 3}
+      propertyPath: iLevelToLoad
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8877044086566312344, guid: e776a4b33ef84a8459695fc8eeb5a857, type: 3}
       propertyPath: m_Name
       value: NextLevel
